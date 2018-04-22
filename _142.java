@@ -31,3 +31,11 @@ public class solution {
 }
 // 即，如果此时有一个新的指针node，从head出发，当slow和head相遇时，相遇的点就是环的入口点
 
+这里我们假设链表长度为l，当fast与slow相遇时slow走了x，fast走了2x，那么2x=l+y，y表示环的起始位置到slow的长度，那么从头到环开始位置的长度假设为z，所以就有下面的等式：
+
+2x = l+y
+x = z+y
+所以l-x = z, 也就是说这样新的节点与slow会在环开始的地方相遇
+1
+2
+3
