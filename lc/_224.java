@@ -1,8 +1,31 @@
-package com.fishercoder.solutions;
+public int myAtoi(String str) {
+       
+        str = str.trim();
+    if (str == null || str.length() == 0) return 0;
+        char firstChar = str.charAt(0);
+        int sign = 1;
+        int start = 0;
+        long res = 0;
+        if (firstChar == '+') {
+            sign = 1;
+            start++;
+        } else if (firstChar == '-') {
+            sign = -1;
+            start++;
+        }
+        for (int i = start; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return (int) res * sign;
+            }
+            res = res * 10 + str.charAt(i) - '0';
+            if (sign == 1 && res > Integer.MAX_VALUE) return  Integer.MAX_VALUE;
+            if (sign == -1 && res > Integer.MAX_VALUE) return Integer.MIN_VALUE;
+        }
+        return (int) res * sign;
+    }
+}
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+
 
 /**
  * Implement a basic calculator to evaluate a simple expression string.
@@ -17,7 +40,7 @@ import java.util.Stack;
  "(1+(4+5+2)-3)+(6+8)" = 23
  Note: Do not use the eval built-in library function.
  */
-public class _224 {
+public class solution2 {
 
 	public int calculate(String s) {
 		if (s == null || s.isEmpty()) {
