@@ -1,4 +1,22 @@
-package com.fishercoder.solutions;
+class Solution {
+    public int rob(int[] nums) {
+        int sto = 0;
+        int nosto = 0;
+        for (int num : nums){
+            int temp = nosto;
+            nosto = Math.max(nosto, sto);
+            sto = num + temp;
+        }
+        return Math.max(nosto, sto);
+    }
+}
+
+//  1，3，2，4，1
+//  no  sto
+//1: 0    1
+//3: 1    3  temp = 3
+//2：3     3
+//
 
 /**198. House Robber
 

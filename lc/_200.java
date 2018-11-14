@@ -1,4 +1,37 @@
-package com.fishercoder.solutions;
+class Solution {
+    int m;
+    int n;
+    public int numIslands(char[][] grid) {
+     if(grid == null || grid.length == 0 ||grid[0].length == 0) return 0;
+      m = grid.length;
+        if (m == 0) return 0;
+      n = grid[0].length;
+      int res = 0;
+      for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+          if(grid[i][j] == '1'){
+
+            helper(grid, i,j);
+            res++;//traverse element in the matrix one by one
+          }
+        }
+      }
+      return res;
+    }
+  private void helper(char[][] grid, int i, int j){
+    if(i < 0||i >= m ||j < 0|| j >= n||grid[i][j] == '0'){ // pay attention to upper bound
+      return;
+    }
+    grid[i][j] = '0';
+    helper(grid, i+1, j);
+    helper(grid, i, j+1);
+    helper(grid, i-1, j);
+    helper(grid, i,j-1);
+    return;
+    
+  }
+}
+
 
 /**
  * 200. Number of Islands
