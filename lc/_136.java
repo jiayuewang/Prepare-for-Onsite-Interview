@@ -1,8 +1,19 @@
-package com.fishercoder.solutions;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+class Solution {
+    public int singleNumber(int[] nums) {
+        int res = 0;
+     HashMap<Integer, Integer> map = new HashMap<>();
+        for(int num : nums){
+            if(map.containsKey(num)){
+                map.remove(num);
+            }else{
+                map.put(num,1);
+            }
+        }
+        return (int)map.keySet().toArray()[0];
 
 /**136. Single Number
 Given an array of integers, every element appears twice except for one. Find that single one.

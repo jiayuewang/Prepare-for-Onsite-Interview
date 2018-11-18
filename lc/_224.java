@@ -1,3 +1,4 @@
+
 public int myAtoi(String str) {
        
         str = str.trim();

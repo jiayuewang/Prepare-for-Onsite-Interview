@@ -1,4 +1,3 @@
-package com.fishercoder.solutions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +57,7 @@ public class _260 {
         public int[] singleNumber(int[] nums) {
             int diff = 0;
             for (int num : nums) {
-                diff ^= num;
+                diff ^= num;//二进制数字有且至少有一位是不相同
             }
 
             //get least significant set bit

@@ -1,4 +1,3 @@
-package com.fishercoder.solutions;
 
 /**
  * 50. Pow(x, n)
@@ -16,6 +15,9 @@ package com.fishercoder.solutions;
  Output: 9.26100
  */
 //递归每次除以2进行分解,递归中只算一次n/2。需要注意的是当n为负数时相当于求(1/x)的n次方
+
+
+// int : -1  ~+26100  -2^32 ~ 2^ 32  long abs = Math.abs((long)n)
 public solution {
 
   public static class Solution1 {
