@@ -1,5 +1,18 @@
-package com.fishercoder.solutions;
-
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        if (nums == null || nums.length == 0) return 0;
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        for( int num : nums){
+            heap.offer(num);
+            if( heap.size() > k){
+                heap.poll();
+            }
+        }
+        return heap.poll();
+        
+    }
+}
+///  nlogk  n
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
@@ -14,8 +27,8 @@ import java.util.PriorityQueue;
 
  Note:
  You may assume k is always valid, 1 ≤ k ≤ array's length.
-
- */
+OnO1
+ */ Solution
 public class Solution {
     public int findKthLargest(int[] nums, int k) {
         int start = 0, end = nums.length - 1, index = nums.length - k;
@@ -28,23 +41,28 @@ public class Solution {
         return nums[start];
     }
     
-    private int partion(int[] nums, int start, int end) {
-        int pivot = start, temp;
-        while (start <= end) {
-            while (start <= end && nums[start] <= nums[pivot]) start++;
-            while (start <= end && nums[end] > nums[pivot]) end--;
-            if (start > end) break;
-            temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
+    private int partion(int[] nums, int left, int right) {
+        int pivot = nums[left];
+        int l = left+1;
+        int r = right;
+        while(l <= r){
+            if(nums[l] < pivot && nums[r] > pivot){
+                swap(nums, l++, r--);
+            }
+            if(nums[l] >= pivot) l++;
+            if(nums[r] <= pivot) r--;
         }
-        temp = nums[end];
-        nums[end] = nums[pivot];
-        nums[pivot] = temp;
-        return end;
+        swap(nums, left, r);
+        // 3 4 6 5 2 1 
+        // 5 4 6 3 2 1 
+        return r;
+        
+        }
+        private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
-}
-
 //quick selected递归 or 非递归
 //  PQ
 

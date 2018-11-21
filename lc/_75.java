@@ -1,5 +1,24 @@
-package com.fishercoder.solutions;
-
+class Solution {
+    public void sortColors(int[] nums) {
+        if(nums == null || nums.length == 0) return;
+        int left = 0; int right = nums.length-1;
+        int index = 0;
+        while(index <= right){
+            if(nums[index] == 0){
+                swap(nums, index++, left++);
+            }else if(nums[index] == 2){
+                swap(nums, index, right--);
+            }else{
+                index++;
+            }
+            }
+        }
+    public void swap(int[] nums, int left, int right){
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+    }
+}
 /**
  * 75. Sort Colors
  *

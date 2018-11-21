@@ -1,32 +1,32 @@
-
-public int myAtoi(String str) {
-       
-        str = str.trim();
-    if (str == null || str.length() == 0) return 0;
-        char firstChar = str.charAt(0);
-        int sign = 1;
-        int start = 0;
-        long res = 0;
-        if (firstChar == '+') {
-            sign = 1;
-            start++;
-        } else if (firstChar == '-') {
-            sign = -1;
-            start++;
-        }
-        for (int i = start; i < str.length(); i++) {
-            if (!Character.isDigit(str.charAt(i))) {
-                return (int) res * sign;
-            }
-            res = res * 10 + str.charAt(i) - '0';
-            if (sign == 1 && res > Integer.MAX_VALUE) return  Integer.MAX_VALUE;
-            if (sign == -1 && res > Integer.MAX_VALUE) return Integer.MIN_VALUE;
-        }
-        return (int) res * sign;
+class Solution {
+    public int calculate(String s) {
+       Stack<Integer> stack = new Stack<>();
+       int sign = 1;
+       int res = 0;
+      for (int i = 0; i < s.length(); i++){
+         if (Character.isDigit(s.charAt(i))){
+           int num = s.charAt(i) - '0';
+           while (i + 1 < s.length() && Character.isDigit(s.charAt(i + 1))){
+             num = num * 10 + s.charAt(i + 1) -'0';
+             i++;
+           }
+           res += sign*num;
+         }else if (s.charAt(i) == '+'){
+           sign = 1;
+         }else if (s.charAt(i) == '-'){
+           sign = -1;
+         }else if (s.charAt(i) == '('){
+           stack.push(res);
+           stack.push(sign);
+           res = 0;
+           sign = 1;
+         }else if (s.charAt(i) == ')') {
+           res = res * stack.pop() + stack.pop();// nultiple sign and add the previous value
+         }
+      }
+      return res;
     }
 }
-
-
 
 /**
  * Implement a basic calculator to evaluate a simple expression string.
