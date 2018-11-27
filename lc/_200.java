@@ -14,7 +14,7 @@ class Solution {
             helper(grid, i,j);
             res++;//traverse element in the matrix one by one
           }
-        }
+        } 
       }
       return res;
     }
