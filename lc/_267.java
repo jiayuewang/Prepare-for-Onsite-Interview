@@ -1,3 +1,59 @@
+class Solution {
+    public List<String> generatePalindromes(String s) {
+      //两种回文形式  
+        int add = 0;
+        String mid = "";
+        List<String> res = new ArrayList<>();
+        List<Character> list =new ArrayList<>();//出现两次在list中只放入一半
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            map.put(c, map.getOrDefault(c , 0) + 1);
+            add += map.get(c) % 2 != 0 ? 1:-1;
+        }
+        if(add > 1) return res;
+        for(HashMap.Entry<Character, Integer> entry : map.entrySet()){
+            char key =entry.getKey();
+            int val =entry.getValue();
+            if(val % 2 != 0) mid += key;//奇数 mid+这个key ==》 mid = 这个奇数
+            for(int i = 0; i < val/2; i++){
+                list.add(key);// 预处理
+            }
+        }
+            helper(list, mid, new boolean[list.size()], new StringBuilder(), res);
+        return res;
+    }
+
+    private void helper(List<Character> list, String mid, boolean[] used, StringBuilder sb, List<String> res) {
+        if (sb.length() == list.size()) {//所有list中的元素都用了
+            res.add(sb.toString() + mid + sb.reverse().toString());
+            sb.reverse();
+            return;
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            if (i > 0 && list.get(i) == list.get(i - 1) && !used[i - 1]) continue;
+            //以前用过了并且相等 去重！
+            if (!used[i]) {
+                used[i] = true;//使用它 赋值为true
+                sb.append(list.get(i));
+                helper(list, mid, used, sb, res);
+                used[i] = false;
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        }
+    }
+}
+  // 结束的条件是sb.length() == list.size()
+        
+        
+
+//  abc  return[]
+// list: a b
+// mid："" 如果都是偶数 则为空、、mid代表奇数的中间
+//回文，出现两次 只放入一次即可
+//用Hashmap存，出现奇数次 > 1,就是回文
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,7 +1,27 @@
-package com.fishercoder.solutions;
-
-import com.fishercoder.common.classes.TreeNode;
-
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }，返回左子树中最大的值，和柚子树中最小的只
+ * }
+ */
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+       if(root==null) return true;
+        return helper(root,null,null);
+    }
+    boolean helper(TreeNode root ,Integer max, Integer min){
+         if(root==null) return true;
+        if((max!=null&&root.val>=max)||(min!=null&&root.val<=min)){
+            return false;
+        }
+        boolean left= helper(root.left,root.val,min);
+        boolean right=helper(root.right,max,root.val);
+        return left&&right;
+    }
+}
 /**
  * 98. Validate Binary Search Tree
  *
