@@ -1,5 +1,45 @@
-package com.fishercoder.solutions;
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 
+public class BSTIterator {
+    TreeNode cur;
+    Stack<TreeNode> s;
+    public BSTIterator(TreeNode root) {
+        cur = root;
+        s = new Stack<TreeNode>();
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        if(!s.isEmpty()|| cur!= null) return true;
+        return false;
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        while(cur != null){
+            s.push(cur);
+            cur = cur.left;
+        }
+        cur = s.pop();
+        int val = cur.val;
+        cur = cur.right;
+        return val;
+    }
+}
+
+/**
+ * Your BSTIterator will be called like this:
+ * BSTIterator i = new BSTIterator(root);
+ * while (i.hasNext()) v[f()] = i.next();
+ */
 import com.fishercoder.common.classes.TreeNode;
 
 import java.util.LinkedList;
