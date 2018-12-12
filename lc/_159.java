@@ -1,4 +1,36 @@
-package com.fishercoder.solutions;
+class Solution {
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int start = 0; int end = 0;
+        int res = 0;
+        while(end < s.length()){
+            if(map.size() <= 2){
+            map.put(s.charAt(end),end);
+                end ++;
+        }
+            if(map.size() > 2){
+                int left = s.length();
+                for(int num : map.values()){
+                    left = Math.min(left, num);
+                }
+                map.remove(s.charAt(left));
+                start = left + 1;
+            }
+            res = Math.max(res, end- start);
+        }
+//         if (s == null || s.length == 0) return map;
+//         for (int i = 0; i < s.length(); i++){
+         
+//             //map.gerOrDefault(s.charAt(i), 0) +1
+        return res;
+        }
+    }
+//eceba  < 2 ece 
+//eceb > 2----> left = min(2, 1(c那个位置)) ，把c扔掉就剩下eb start = 2 
+//然后size == 2 又加入一个 eba end++,超界，size = 2
+//ecebad  or这个例子
+// size==2 又加入eba end++, size > 2, delete e 最后长度为2 res = 3
+//return res
 
 import java.util.HashMap;
 

@@ -1,6 +1,4 @@
-package com.fishercoder.solutions;
 
-import com.fishercoder.common.classes.ListNode;
 
 import java.util.HashSet;
 import java.util.Set;
