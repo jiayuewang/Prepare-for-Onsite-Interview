@@ -1,25 +1,25 @@
-public class ZigzagIterator {//在Linkeidlist中（）不用加index 直接remove了头部元素
-   LinkedList<Iterator> list = new LinkedList<>();
+// public class ZigzagIterator {//在Linkeidlist中（）不用加index 直接remove了头部元素
+//    LinkedList<Iterator> list = new LinkedList<>();
   
-    public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
-       if(!v1.isEmpty()) list.add(v1.iterator());
-        if(!v2.isEmpty()) list.add(v2.iterator());
+//     public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
+//        if(!v1.isEmpty()) list.add(v1.iterator());
+//         if(!v2.isEmpty()) list.add(v2.iterator());
         
-    }
+//     }
 
-    public int next() {
-        Iterator poll = list.remove();
-        int res = (Integer)poll.next();// 强制类型转换
-        if(poll.hasNext()){
-            list.add(poll);
-        }
-        return res;
-    }
+//     public int next() {
+//         Iterator poll = list.remove();
+//         int res = (Integer)poll.next();// 强制类型转换
+//         if(poll.hasNext()){
+//             list.add(poll);
+//         }
+//         return res;
+//     }
 
-    public boolean hasNext() {
-        return !list.isEmpty();
-    }
-}
+//     public boolean hasNext() {
+//         return !list.isEmpty();
+//     }
+// }
 
 /**
  * Your ZigzagIterator object will be instantiated and called as such:
@@ -34,6 +34,24 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+public class ZigzagIterator{
+    LinkedList<Iterater> list = new LinkeList<>();
+    public ZigzagIterater(List<Integer> list1, List<Integer> list2){
+        if(!list1.isEmpty()) list.add(list1.iterarir());
+        if(!list2.isempty()) list.add(list2.iterator());
+    }
+
+    public int next(){
+      Iterator poll = list.remove();
+      // removr the head of the list
+      int res = (Integer)poll.next();
+      if(poll.hasnext()){
+        list.add(poll);
+      }
+    }
+    }
+} 
 
 // /**
 //  * 281. Zigzag Iterator
@@ -58,10 +76,10 @@ import java.util.Queue;
 //  It should return [1,4,8,2,5,9,3,6,7]. -->
 //  */
 
-这道题让我们写一个之字形迭代器，跟之前那道Flatten 2D Vector有些类似，那道题是横向打印，这道题是纵向打印，
-虽然方向不同，但是实现思路都是大同小异。我最先想到的方法是用两个变量i和j分别记录两个向量的当前元素位置，初始化为0，
-然后当i<=j时，则说明需要打印v1数组的元素，反之则打印v2数组中的元素。在hasNext函数中，当i或j打印等于对应数组的长度时，
-我们将其赋为一个特大值，这样不影响我们打印另一个数组的值，只有当i和j都超过格子数组的长度时，返回false，
+//这道题让我们写一个之字形迭代器，跟之前那道Flatten 2D Vector有些类似，那道题是横向打印，这道题是纵向打印，
+//虽然方向不同，但是实现思路都是大同小异。我最先想到的方法是用两个变量i和j分别记录两个向量的当前元素位置，初始化为0，
+//然后当i<=j时，则说明需要打印v1数组的元素，反之则打印v2数组中的元素。在hasNext函数中，当i或j打印等于对应数组的长度时，
+//我们将其赋为一个特大值，这样不影响我们打印另一个数组的值，只有当i和j都超过格子数组的长度时，返回false，
 
 public class _281 {
 
